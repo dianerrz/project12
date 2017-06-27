@@ -1,95 +1,56 @@
-<!doctype html>
-<html lang="{{ config('app.locale') }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<!DOCTYPE html>
+<html>
+<head>
+    <title>trynote</title>
+    <script type="text/javascript" src="https://unpkg.com/vue"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+<div id="app">
 
-        <title>Laravel</title>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+        <form class="form-inline">
+          <div class="form-group">
+            <label for="Title">Title</label>
+            <input type="text" class="form-control" id="title" placeholder="" v-model="post.titlev">
+          </div>
+          <div class="form-group">
+            <label for="text">Email</label>
+            <input type="text" class="form-control" id="text" placeholder="" v-model="post.textv">
+          </div>
+          <button @click="addPost()" class="btn btn-default">Add Post</button>
+        </form>
+        <button class="btn btn-default" @click="addPost()">Submit</button>
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
+<div class="list-group">
+  <a href="#" class="list-group-item active" v-for="post in posts">
+    <h4 class="list-group-item-heading">{{ post.titlev }}</h4>
+    <p class="list-group-item-text">{{ post.textv }}</p>
+  </a>
+</div>
+
+
+<script type="text/javascript">
+    var app = new Vue({
+        el: '#app',
+        data: {
+            post: {
+                titlev: "",
+                textv: "",
+            },
+            posts: []
+        },
+        methods: {
+            addPost(){
+                let { titlev, textv } = this.post;
+                this.posts.push({
+                    titlev: titlev,
+                    textv: textv
+                });
             }
+        }
+    })
+</script>
+</body>
 
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @if (Auth::check())
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ url('/login') }}">Login</a>
-                        <a href="{{ url('/register') }}">Register</a>
-                    @endif
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
-        </div>
-    </body>
 </html>
