@@ -24,8 +24,8 @@
 
 <div class="list-group">
   <a href="#" class="list-group-item active" v-for="post in posts">
-    <h4 class="list-group-item-heading">{{ post.titlev }}</h4>
-    <p class="list-group-item-text">{{ post.textv }}</p>
+    <h4 class="list-group-item-heading">@{{ post.titlev }}</h4>
+    <p class="list-group-item-text">@{{ post.textv }}</p>
   </a>
 </div>
 
